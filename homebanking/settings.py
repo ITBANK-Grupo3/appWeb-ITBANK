@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from os import path
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,3 +140,6 @@ LOGOUT_REDIRECT_URL = "/cuenta/login/"
 
 # Ingreso estandar de fechas en formularios
 DATE_INPUT_FORMATS = ["%d-%m-%Y"]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
