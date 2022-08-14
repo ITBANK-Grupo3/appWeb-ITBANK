@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("render_templates.urls")),
-    
+    path('accounts/',include('django.contrib.auth.urls')),
     path("cuenta/", include("login.urls")),
 
 ]

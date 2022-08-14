@@ -69,3 +69,10 @@ header svg {
 .ingresar:hover {
 	box-shadow: 0 0.08rem 0.4rem rgba(75, 74, 98, 0.6);
 }
+
+.centrado {
+	min-height: 400px;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
