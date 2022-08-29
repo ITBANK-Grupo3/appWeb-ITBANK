@@ -91,7 +91,7 @@ DATABASES = {
     },
 }
 
-#DATABASE_ROUTERS = ['database_routers.auth_router.AuthRouter']
+DATABASE_ROUTERS = ['database.dbrouter.MyRouter', ]
 
 
 # Password validation
