@@ -1,10 +1,4 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
+
 from django.db import models
 
 
@@ -26,7 +20,7 @@ class AuditoriaCuenta(models.Model):
 
 
 class CorrespondenciaDirecciones(models.Model):
-    correspondencia_id = models.AutoField(primary_key=True, blank=True, null=False)
+    correspondencia_id = models.AutoField(primary_key=True, blank=False )
     tipo = models.TextField()
 
     class Meta:
@@ -47,9 +41,9 @@ class Cuenta(models.Model):
 
 
 class Direcciones(models.Model):
-    dire_id = models.AutoField(primary_key=True)
-    correspondencia = models.ForeignKey(CorrespondenciaDirecciones, models.DO_NOTHING)
-    titular_id = models.IntegerField()
+    dir_id = models.AutoField(primary_key=True)
+    correspondencia = models.ForeignKey(CorrespondenciaDirecciones, on_delete=models.DO_NOTHING, null= True)
+    customer_id = models.IntegerField()
     calle = models.TextField()
     numero = models.IntegerField()
     ciudad = models.TextField()
@@ -65,7 +59,7 @@ class Empleado(models.Model):
     employee_id = models.AutoField(primary_key=True)
     employee_name = models.TextField()
     employee_surname = models.TextField()
-    employee_hire_date = models.TextField()
+    employee_hire_date = models.DateTimeField()
     employee_dni = models.TextField(
         db_column="employee_DNI"
     )  # Field name made lowercase.
@@ -87,10 +81,8 @@ class MarcaTarjeta(models.Model):
 
 class Movimientos(models.Model):
     transaction_id = models.AutoField(primary_key=True)
-    emisor_id = models.ForeignKey(
-        Cuenta, on_delete=models.CASCADE, related_name="emisor"
-    )
-    receptor_id = models.ForeignKey(
+    account_id = models.TextField()
+    account_id_rec = models.ForeignKey(
         Cuenta, on_delete=models.CASCADE, related_name="receptor"
     )
     amount = models.FloatField()
@@ -105,12 +97,12 @@ class Movimientos(models.Model):
 class Prestamo(models.Model):
     loan_id = models.AutoField(primary_key=True)
     loan_type = models.TextField()
-    loan_date = models.TextField()
+    loan_date = models.DateField()
     loan_total = models.IntegerField()
     customer_id = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = "prestamo"
 
 
